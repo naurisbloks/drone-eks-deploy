@@ -12,18 +12,20 @@ name: default
 
 steps:
 - name: deploy_to_eks
-  image: samcre/drone-eks
+  image: 135746454934.dkr.ecr.eu-central-1.amazonaws.com/drone-eks-deploy
   settings:
     eks_cluster: ${EKS_CLUSTER_NAME}
     name: ${RESOURCE_NAME}
     image_tag: ${IMAGE_TAG_NAME}
     container: ${CONTAINER_NAME}
-    access_key: ${AWS_ACCESS_KEY_ID}  # Optional
-    secret_key: ${AWS_SECRET_ACCESS_KEY}  # Optional
-    namespace: ${K8S_NAMESPACE}  # Optional, default to "default"
-    aws_region: ${AWS_REGION}  # Optional, default to "us-east-2"
-    kind: ${K8S_RESOURCE_TYPE}  # Optional, default to "deployment"
+    namespace: ${K8S_NAMESPACE}
+    kind: ${K8S_RESOURCE_TYPE}
+    registry: ${AWS_REGISTRY_URI}
+    repo: ${AWS_REGISTRY_REPO}
     iam_role: ${AWS_IAM_ROLE}  # Optional, default to ""
+    access_key: ${AWS_ACCESS_KEY_ID}
+    secret_key: ${AWS_SECRET_ACCESS_KEY}
+    aws_region: ${AWS_REGION}
 ```
 
 ## IAM permissions
